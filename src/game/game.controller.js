@@ -10,27 +10,19 @@ function getNextPlayer(player, players) {
   return players[nextPlayerIndex];
 }
 
-function launchGame(id, nbCat, nbMaxPlayers, countDownBeforeGame, socket) {
+function launchGame(id, nbCat, nbMaxPlayers, countDownBeforeGame) {
   let aGame = new Game(id, nbCat, nbMaxPlayers);
   aGame.init().then(() => {
-    socket.brodcast
-      .to(id)
-      .emit('tchoin', 'tchoin')
-      // .on('connection', function(socket) {
-      //   aGame.newPlayer();
-      // })
-      .then(() => {
-        let player = pickAPlayer(aGame.players);
-        console.log('Le joueur qui joue : ' + player.name);
-        let result = launchDice();
-        console.log('Le résultat du dé : ' + result);
-        console.log(
-          aGame.board.getNeighbors(aGame.board.boxes[player.position], result)
-        );
-      });
-    //aGame.newPlayer();
-    //aGame.newPlayer();
-    //aGame.newPlayer();
+    aGame.newPlayer(); //simulation d'une connection d'un joueur
+    aGame.newPlayer(); //simulation d'une connection d'un joueur
+    aGame.newPlayer(); //simulation d'une connection d'un joueur
+    let player = pickAPlayer(aGame.players);
+    console.log('Le joueur qui joue : ' + player.name);
+    let result = launchDice();
+    console.log('Le résultat du dé : ' + result);
+    console.log(
+      aGame.board.getNeighbors(aGame.board.boxes[player.position], result)
+    );
 
     player.position = 5; //CHOIX UTILISATEUR
     console.log(player.name + ' se déplace sur la case n°' + player.position);
@@ -39,4 +31,4 @@ function launchGame(id, nbCat, nbMaxPlayers, countDownBeforeGame, socket) {
   });
 }
 
-module.exports = { launchGame, pickAPlayer, getNextPlayer };
+module.exports = { launchGame };

@@ -25,14 +25,10 @@ async function start() {
   console.log('Server running at : ', server.info.uri);
 }
 start().then(() => {
-  io.on('connection', function(socket) {
-    let id = Math.ceil(Math.random() * 10000);
-    socket.join(id);
-    socket.on('createGame', function(infos) {
-      launchGame(id, 6, infos.nbPlayers, infos.countDown, socket);
-    });
-    console.log('a user connected');
-  });
+  let id = Math.ceil(Math.random() * 10000);
+  let infos = { nbPlayers: 6, countDown: 10 };
+
+  launchGame(id, 6, infos.nbPlayers, infos.countDown);
 });
 
 //server.route(require('./question/question.routes'));

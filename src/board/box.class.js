@@ -55,7 +55,7 @@ class CheeseBox extends IBox {
 }
 
 class CenterBox extends IBox {
-  constructor(id, x, y, theme) {
+  constructor(id, x, y) {
     super(id, x, y);
   }
   play() {}

@@ -16,7 +16,12 @@ class Game {
     return new Promise((resolve) => {
       this._board.init().then(() => {
         console.log('La Partie #' + this._id + ' a bien été crée !');
-        console.log('Le Plateau comporte ' + this._nbCat + ' catégories');
+        console.log(
+          'Le Plateau comporte ' + this._nbCat + ' catégories qui sont :'
+        );
+        this._board.themes.forEach((theme, j) => {
+          console.log(j + 1 + ' : ' + theme.name);
+        });
         this._ready = true;
         resolve();
       });

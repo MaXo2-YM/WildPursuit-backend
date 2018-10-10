@@ -29,33 +29,44 @@ function createBox(id, posX, posY, type, theme) {
 function createBoxes(themes) {
   let theBoxes = [];
   if (themes.length >= 4) {
+    let N = 0;
     for (let i = 0; i <= 2 * themes.length * themes.length; i++) {
       let type = 'default';
-      //choisir la catégorie
-      //si on est dans les chemins intérieurs
-      //si on est dans les chemins extérieurs
-      // CAT1: 1 = 36 = 17 // = 48 = 49 = 40 = 57 //
-      // CAT2: 13 = 12 = 29 // = 60 = 61 = 52 = 69 //
-      // CAT3: 19 = 18 = 35 // = 66 = 67 = 58 = 39 //
-      // CAT4: 31 = 30 = 11 // = 42 = 43 = 51 = 70 //
-      // CAT5: 25 = 24 = 5 // = 37 = 72 = 45 = 64 //
-      // CAT6: 7 = 6 = 23 // = 54 = 55 = 46 = 63 //
-      let theme = {
-        name: 'Géographie',
-        color: { name: 'Rouge', code: '#FF0000' },
-      };
-      if (i === 0) {
-        type = 'center';
-      } else if (!(i % themes.length) && i <= themes.length * themes.length) {
-        type = 'cheese';
-        //choisir la catégorie
-      } else if (
-        i > themes.length * themes.length &&
-        (i % themes.length === 2 || i % themes.length === 5)
-      ) {
-        //ne marche que pour la génération à 6 catégories pour le moment
-        //to fix : prévoir les scénarios de génération des cases replay pour nbCat [4,inf]
-        type = 'replay';
+      let theme;
+      if (i <= themes.length * themes.length) {
+        // BRANCHES INTERIEURES
+
+        if (i === 0) {
+          type = 'center';
+        } else if (i <= themes.length) {
+          // La première branche, celle qui définit arbitrairement un ordre
+          theme = themes[i - 1];
+          if (i === themes.length) {
+            type = 'cheese';
+            N++;
+          }
+        } else if (i === N * themes.length + 1) {
+          theme = theBoxes[i - 1].theme;
+        } else if (i === N * themes.length + 2) {
+          theme = theBoxes[i - 5].theme;
+        } else if (i === N * themes.length + 3) {
+          theme = theBoxes[i - 4].theme;
+        } else if (i === N * themes.length + 4) {
+          theme = theBoxes[i - 9].theme;
+        } else if (i === N * themes.length + 5) {
+          theme = theBoxes[i - 7].theme;
+        } else if (i === N * themes.length + 6) {
+          theme = theBoxes[i - 10].theme;
+          type = 'cheese';
+          N++;
+        }
+      } else {
+        // CERCLE EXTERIEUR
+        if (i % themes.length === 2 || i % themes.length === 5) {
+          //ne marche que pour la génération à 6 catégories pour le moment
+          //to fix : prévoir les scénarios de génération des cases replay pour nbCat [4,inf]
+          type = 'replay';
+        }
       }
 
       theBoxes[i] = createBox(i, 0, 0, type, theme);

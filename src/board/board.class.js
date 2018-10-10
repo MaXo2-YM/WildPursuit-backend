@@ -30,7 +30,7 @@ class NormalBoard extends IBoard {
       boardHelpers.pickThemes(this._nbCat).then((themes) => {
         this._themes = themes;
         this._theBoxes = boardHelpers.createBoxes(this._themes);
-        //console.log(this._theBoxes);
+        console.log(this._theBoxes);
         this._thePaths = boardHelpers.createPaths(this._nbCat, this._theBoxes);
         this._ready = true;
         resolve();
@@ -49,6 +49,13 @@ class NormalBoard extends IBoard {
   get paths() {
     if (this._ready) {
       return this._thePaths;
+    } else {
+      throw 'init method was not called before this';
+    }
+  }
+  get themes() {
+    if (this._ready) {
+      return this._themes;
     } else {
       throw 'init method was not called before this';
     }

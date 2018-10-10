@@ -28,3 +28,4 @@ function fillDBThemes() {
   console.log('Database filled with themes');
 }
 module.exports = fillDBThemes;
+

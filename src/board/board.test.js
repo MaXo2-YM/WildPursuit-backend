@@ -29,6 +29,60 @@ describe('Generate a board', () => {
       boxes[themes.length * themes.length + 2],
       'Objet'
     ).to.be.an.instanceOf(ReplayBox);
+
+    //CATEGORIES :
+    //Première branche
+    expect(boxes[1].theme).to.be.equal(themes[0]);
+    expect(boxes[2].theme).to.be.equal(themes[1]);
+    expect(boxes[3].theme).to.be.equal(themes[2]);
+    expect(boxes[4].theme).to.be.equal(themes[3]);
+    expect(boxes[5].theme).to.be.equal(themes[4]);
+    expect(boxes[6].theme).to.be.equal(themes[5]);
+
+    //deuxième branche
+    expect(boxes[7].theme).to.be.equal(themes[5]);
+    expect(boxes[8].theme).to.be.equal(themes[2]);
+    expect(boxes[9].theme).to.be.equal(themes[4]);
+    expect(boxes[10].theme).to.be.equal(themes[0]);
+    expect(boxes[11].theme).to.be.equal(themes[3]);
+    expect(boxes[12].theme).to.be.equal(themes[1]);
+
+    //dernière branche
+    expect(boxes[31].theme).to.be.equal(themes[3]);
+    expect(boxes[32].theme).to.be.equal(themes[5]);
+    expect(boxes[33].theme).to.be.equal(themes[1]);
+    expect(boxes[34].theme).to.be.equal(themes[4]);
+    expect(boxes[35].theme).to.be.equal(themes[2]);
+    expect(boxes[36].theme).to.be.equal(themes[0]);
+
+    //Autour des cases camembert
+    expect(boxes[37].theme).to.be.equal(themes[4]);
+    expect(boxes[72].theme).to.be.equal(themes[4]);
+    expect(boxes[42].theme).to.be.equal(themes[3]);
+    expect(boxes[43].theme).to.be.equal(themes[3]);
+    expect(boxes[48].theme).to.be.equal(themes[0]);
+    expect(boxes[49].theme).to.be.equal(themes[0]);
+    expect(boxes[54].theme).to.be.equal(themes[5]);
+    expect(boxes[55].theme).to.be.equal(themes[5]);
+    expect(boxes[60].theme).to.be.equal(themes[1]);
+    expect(boxes[61].theme).to.be.equal(themes[1]);
+    expect(boxes[66].theme).to.be.equal(themes[2]);
+    expect(boxes[67].theme).to.be.equal(themes[2]);
+
+    //Les dernieres
+    expect(boxes[39].theme).to.be.equal(themes[2]);
+    expect(boxes[40].theme).to.be.equal(themes[0]);
+    expect(boxes[45].theme).to.be.equal(themes[4]);
+    expect(boxes[46].theme).to.be.equal(themes[5]);
+    expect(boxes[51].theme).to.be.equal(themes[3]);
+    expect(boxes[52].theme).to.be.equal(themes[1]);
+    expect(boxes[57].theme).to.be.equal(themes[0]);
+    expect(boxes[58].theme).to.be.equal(themes[2]);
+    expect(boxes[63].theme).to.be.equal(themes[5]);
+    expect(boxes[64].theme).to.be.equal(themes[4]);
+    expect(boxes[69].theme).to.be.equal(themes[1]);
+    expect(boxes[70].theme).to.be.equal(themes[3]);
+
     done();
   });
   it('Should generate an array of paths (arrays) with a pattern', (done) => {

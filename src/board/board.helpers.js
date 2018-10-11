@@ -27,6 +27,8 @@ function createBox(id, posX, posY, type, theme) {
 }
 
 function createBoxes(themes) {
+  //ne marche que pour la génération à 6 catégories pour le moment
+  //to fix : prévoir les scénarios de génération des cases replay pour nbCat [4,inf]
   let theBoxes = [];
   if (themes.length >= 4) {
     let N = 0;
@@ -62,9 +64,24 @@ function createBoxes(themes) {
         }
       } else {
         // CERCLE EXTERIEUR
-        if (i % themes.length === 2 || i % themes.length === 5) {
-          //ne marche que pour la génération à 6 catégories pour le moment
-          //to fix : prévoir les scénarios de génération des cases replay pour nbCat [4,inf]
+        if (i === themes.length * themes.length + 1) {
+          //cas particulier : 1ere case du cercle extérieur
+          theme = theBoxes[i - 32].theme;
+        } else if (i === 2 * (themes.length * themes.length)) {
+          //cas particulier : derniere case du cercle extérieur
+          theme = theBoxes[themes.length * themes.length + 1].theme;
+        } else if (i % themes.length === 0) {
+          //case avant la case camembert
+          theme = theBoxes[i - 31].theme;
+        } else if (i % themes.length === 1) {
+          //case après la case camembert
+          theme = theBoxes[i - 1].theme;
+        } else if (i % themes.length === 3) {
+          theme = theBoxes[i - 36].theme;
+        } else if (i % themes.length == 4) {
+          theme = theBoxes[i - 39].theme;
+        } else if (i % themes.length === 2 || i % themes.length === 5) {
+          // case replay
           type = 'replay';
         }
       }

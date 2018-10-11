@@ -21,11 +21,22 @@ describe('Round related Tests', () => {
     })
       .then(() => {
         console.info('Questions deleted');
-        getNewQuestions(5).then((questions) => {
+        const themes = [
+          { name: 'Histoire' },
+          { name: 'Géographie' },
+          { name: 'Science & Nature' },
+          { name: 'Télévision' },
+          { name: 'Théatre' },
+          { name: 'Sport' },
+          { name: 'Littérature' },
+          { name: 'People' },
+        ];
+        getNewQuestions(100).then((questions) => {
           Promise.all(
             questions.map((question) => {
               const theQuestion = {
-                themeName: 'Géographie',
+                themeName:
+                  themes[Math.floor(Math.random() * themes.length)].name,
                 question: question.question,
                 response: question.correct_answer,
                 responses: question.incorrect_answers,
@@ -42,7 +53,15 @@ describe('Round related Tests', () => {
   });
 
   it('Should get all the questions and set them to Unused', (done) => {
-    getQuestions()
+    const themes = [
+      { name: 'Histoire' },
+      { name: 'Géographie' },
+      { name: 'Science & Nature' },
+      { name: 'Télévision' },
+      { name: 'Théatre' },
+      { name: 'Sport' },
+    ];
+    getQuestions(themes)
       .then((theQuestions) => {
         expect(theQuestions).to.be.an.array();
         theQuestions.map((question) => {
@@ -61,6 +80,11 @@ describe('Round related Tests', () => {
           expect(question.content.id).to.be.not.null();
           expect(question.content.themeName).to.be.not.null();
           expect(question.content.correctAnswer).to.be.not.null();
+
+          let themeNames = themes.map((theme) => theme.name);
+          expect(themeNames).to.include(question.content.themeName);
+          expect(question.content.themeName).not.to.be.equal('Littérature');
+          expect(question.content.themeName).not.to.be.equal('People');
         });
 
         done();
@@ -68,8 +92,16 @@ describe('Round related Tests', () => {
       .catch(done);
   });
 
-  it.skip('Should pick One Question who was not already used and in the right theme and set it to used', (done) => {
-    getQuestions()
+  it('Should pick One Question who was not already used and in the right theme and set it to used', (done) => {
+    const themes = [
+      { name: 'Histoire' },
+      { name: 'Géographie' },
+      { name: 'Science & Nature' },
+      { name: 'Télévision' },
+      { name: 'Théatre' },
+      { name: 'Sport' },
+    ];
+    getQuestions(themes)
       .then((questions) => {
         let question = pickAQuestion(questions, 'Géographie');
         expect(question, '#0').to.include([
@@ -79,10 +111,10 @@ describe('Round related Tests', () => {
           'correctAnswer',
           'answers',
         ]);
-        expect(question.content.answers, '#1')
+        expect(question.answers, '#1')
           .to.be.an.array()
-          .and.to.include(question.content.correctAnswer);
-        expect(question.content.answers.length, '#2').to.be.at.least(2);
+          .and.to.include(question.correctAnswer);
+        expect(question.answers.length, '#2').to.be.at.least(2);
         questions.map((aQuestion) => {
           if (aQuestion.content.id === question.id) {
             expect(aQuestion.isAlreadyUsed, '#3').to.be.true();
@@ -96,7 +128,7 @@ describe('Round related Tests', () => {
   });
 
   it.skip('Should say to us if the answer is correct or not ', (done) => {
-    getQuestion()
+    getQuestions()
       .then((theQuestion) => {
         const correctAnswer = theQuestion.correctAnswer;
         let indexBonneReponse = 0;

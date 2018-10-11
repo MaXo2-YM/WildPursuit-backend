@@ -9,7 +9,7 @@ const questionsCtrl = require('./question.controller');
 
 describe('CRUD /questions', () => {
   beforeEach((done) => {
-    console.info('deleting questions ...');
+    console.info('deleting questions...');
     Question.destroy({
       where: {},
       truncate: true,

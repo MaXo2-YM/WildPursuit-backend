@@ -6,20 +6,15 @@ const { launchGame } = require('./game/game.controller.js');
 
 // require('./syncModels.js'); //Pour synchroniser les models avec la BDD
 
-// -------------------------------
-// Avoiding error when watch reload
-// if (!module.parent) {
-//   server.start((error) => {
-//     process.exit(1);
-//   });
-// }
-
 async function start() {
-  //await server.register(require('inert'));
   try {
-    await server.start();
-  } catch (err) {
-    console.log(err);
+    if (!module.parent) {
+      await server.start((error) => {
+        process.exit(1);
+      });
+    }
+  } catch (error) {
+    console.log(error);
     process.exit(1);
   }
   console.log('Server running at : ', server.info.uri);
@@ -31,6 +26,6 @@ start().then(() => {
   launchGame(id, 6, infos.nbPlayers, infos.countDown);
 });
 
-//server.route(require('./question/question.routes'));
+server.route(require('./question/question.routes'));
 
-//module.exports = server;
+module.exports = server;

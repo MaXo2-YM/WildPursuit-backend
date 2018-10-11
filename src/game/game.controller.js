@@ -31,4 +31,4 @@ function launchGame(id, nbCat, nbMaxPlayers, countDownBeforeGame) {
   });
 }
 
-module.exports = { launchGame };
+module.exports = { pickAPlayer, getNextPlayer, launchGame };

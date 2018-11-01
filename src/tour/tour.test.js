@@ -117,30 +117,4 @@ describe('Round related Tests', () => {
       })
       .catch(done);
   });
-
-  it.skip('Should say to us if the answer is correct or not ', (done) => {
-    getQuestions()
-      .then((theQuestion) => {
-        const correctAnswer = theQuestion.correctAnswer;
-        let indexBonneReponse = 0;
-        let answersOfQuestion = theQuestion.answers;
-        for (let i = 0; i < answersOfQuestion.length; i++) {
-          if (correctAnswer === answersOfQuestion[i]) {
-            indexBonneReponse = i;
-          }
-        }
-        resolveQuestion(theQuestion.id, indexBonneReponse + 1)
-          .then((isCorrect) => {
-            expect(isCorrect).to.be.true();
-            resolveQuestion(theQuestion.id, 7)
-              .then(done)
-              .catch((isCorrect) => {
-                expect(isCorrect).to.be.false();
-                done();
-              });
-          })
-          .catch(done);
-      })
-      .catch(done);
-  });
 });

@@ -9,6 +9,7 @@ class Game {
     this._players = [];
     this._playersNamesAndColor = getNamesAndColors(nbPlayers);
     this._board = new NormalBoard(this._nbCat);
+    this._questions = [];
     this._ready = false;
   }
 
@@ -22,6 +23,7 @@ class Game {
         this._board.themes.forEach((theme, j) => {
           console.log(j + 1 + ' : ' + theme.name);
         });
+
         this._ready = true;
         resolve();
       });

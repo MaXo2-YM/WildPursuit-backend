@@ -30,7 +30,6 @@ class NormalBoard extends IBoard {
       boardHelpers.pickThemes(this._nbCat).then((themes) => {
         this._themes = themes;
         this._theBoxes = boardHelpers.createBoxes(this._themes);
-        console.log(this._theBoxes);
         this._thePaths = boardHelpers.createPaths(this._nbCat, this._theBoxes);
         this._ready = true;
         resolve();
@@ -42,7 +41,7 @@ class NormalBoard extends IBoard {
     if (this._ready) {
       return this._theBoxes;
     } else {
-      throw 'init method was not called before this';
+      throw "init method was not called before calling 'get boxes()'";
     }
   }
 
@@ -50,14 +49,14 @@ class NormalBoard extends IBoard {
     if (this._ready) {
       return this._thePaths;
     } else {
-      throw 'init method was not called before this';
+      throw "init method was not called before calling 'get paths()'";
     }
   }
   get themes() {
     if (this._ready) {
       return this._themes;
     } else {
-      throw 'init method was not called before this';
+      throw "init method was not called before calling 'get themes()'";
     }
   }
 
@@ -97,7 +96,7 @@ class NormalBoard extends IBoard {
       });
       return neighbors;
     } else {
-      throw 'init method was not called before this';
+      throw "init method was not called before calling 'getNeighbors()'";
     }
   }
 }

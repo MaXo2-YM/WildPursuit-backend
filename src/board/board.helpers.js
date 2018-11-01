@@ -138,6 +138,7 @@ function areSameArrays(tab1, tab2) {
   }
   return false;
 }
+
 function pickThemes(nbThemes) {
   return getAllThemes()
     .then((allThemes) => {
@@ -145,7 +146,6 @@ function pickThemes(nbThemes) {
     })
     .catch((error) => {
       console.log(error);
-      return 'blop';
     });
 }
 module.exports = {

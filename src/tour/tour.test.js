@@ -3,8 +3,8 @@ const expect = Code.expect;
 const sequelize = require('./../db.js');
 const Question = require('./../question/question.model');
 const { getNewQuestions } = require('./tour.helper.js');
+const { getQuestions } = require('./../game/game.controller.js');
 const {
-  getQuestions,
   pickAQuestion,
   displayQuestion,
   resolveQuestion,
@@ -21,17 +21,8 @@ describe('Round related Tests', () => {
     })
       .then(() => {
         console.info('Questions deleted');
-        const themes = [
-          { name: 'Histoire' },
-          { name: 'Géographie' },
-          { name: 'Science & Nature' },
-          { name: 'Télévision' },
-          { name: 'Théatre' },
-          { name: 'Sport' },
-          { name: 'Littérature' },
-          { name: 'People' },
-        ];
-        getNewQuestions(100).then((questions) => {
+        const { themes } = require('./../question/theme/theme.data.js');
+        getNewQuestions().then((questions) => {
           Promise.all(
             questions.map((question) => {
               const theQuestion = {

@@ -10,7 +10,6 @@ const themes = [
   { name: 'Jeux de Société' },
   { name: 'Science & Nature' },
   { name: 'Informatique' },
-  { name: 'Nouvelle Technologies' },
   { name: 'Mathématiques' },
   { name: 'Mythologie' },
   { name: 'Sport' },
@@ -27,4 +26,4 @@ function fillDBThemes() {
   });
   console.log('Database filled with themes');
 }
-module.exports = fillDBThemes;
+module.exports = { fillDBThemes, themes };

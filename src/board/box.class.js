@@ -1,4 +1,4 @@
-class Noeud {
+class Node {
   constructor(id) {
     this._id = id;
   }
@@ -7,7 +7,7 @@ class Noeud {
   }
 }
 
-class IBox extends Noeud {
+class IBox extends Node {
   constructor(id, x, y) {
     super(id);
 

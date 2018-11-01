@@ -46,30 +46,37 @@ Question.destroy({
 })
   .then(() => {
     console.info('La DB est vide');
+    let compteurThemes = 0;
+    let compteurQuestionsTot = 0;
+
     for (theme in datas) {
+      let compteurQuestions = 0;
       datas[theme].forEach(function(question) {
         Question.create(question).catch((err) => {
           console.error(err);
         });
+        compteurQuestions++;
       });
+      compteurQuestionsTot += compteurQuestions;
       console.info(
         'la catégorie ' +
           theme +
           ' contient ' +
-          datas[theme].length +
+          compteurQuestions +
           ' questions'
       );
+      compteurThemes++;
     }
-    let themesLength = Object.keys(datas).length;
-    console.info('La DB contient donc ' + themesLength + ' catégories,');
+    //let themesLength = Object.keys(datas).length;
+    console.info('La DB contient donc ' + compteurThemes + ' catégories,');
 
-    let questionsLength = 0;
+    /*     let questionsLength = 0;
     for (let i = 0; i < themesLength; i++) {
       questionsLength += datas[theme].length;
-    }
-    console.info('pour un total de ' + questionsLength + ' questions');
+    } */
+    console.info('pour un total de ' + compteurQuestionsTot + ' questions');
     console.info('La base de données a bien été remplie (cette tchoin)');
-    console.info('Appuyez sur ctrlC pour arreter le script.');
+    console.info('Appuyez sur ctrl+C pour arreter le script.');
   })
   .catch((err) => {
     console.error(err);

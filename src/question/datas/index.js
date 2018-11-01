@@ -1,4 +1,13 @@
 exports.dataAnimals = require('./questions.datas.animals');
 exports.dataArts = require('./questions.datas.arts');
-exports.dataMovies = require('./questions.datas.movies');
+exports.dataBoardGames = require('./questions.datas.boardGames');
+exports.dataComputers = require('./questions.datas.computers');
 exports.dataGeneralKnowledges = require('./questions.datas.generalsKnowledges');
+exports.dataGeography = require('./questions.datas.geography');
+exports.dataHistory = require('./questions.datas.history');
+exports.dataLitterature = require('./questions.datas.litterature');
+exports.dataMaths = require('./questions.datas.maths');
+exports.dataMovies = require('./questions.datas.movies');
+exports.dataMusics = require('./questions.datas.musics');
+exports.dataMythology = require('./questions.datas.mythology');
+exports.dataVideosGames = require('./questions.datas.videosGames');

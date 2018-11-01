@@ -23,6 +23,12 @@ class Player {
   set position(pos) {
     return (this._position = pos);
   }
+
+  winACheese(theme) {
+    if (!this._cheeses.includes(theme)) {
+      this._cheeses.push(theme);
+    }
+  }
 }
 
 module.exports = Player;

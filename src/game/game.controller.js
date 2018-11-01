@@ -57,7 +57,7 @@ function launchGame(id, nbCat, nbMaxPlayers, countDownBeforeGame) {
     getQuestions(aGame.board.themes).then((questions) => {
       aGame.newPlayer(); //simulation d'une connection d'un joueur
       aGame.newPlayer(); //simulation d'une connection d'un joueur
-      aGame.newPlayer(); //simulation d'une connection d'un joueur
+      //aGame.newPlayer(); //simulation d'une connection d'un joueur
       let player = pickAPlayer(aGame.players);
 
       let endGame = false;

@@ -10,4 +10,7 @@ exports.dataMaths = require('./questions.datas.maths');
 exports.dataMovies = require('./questions.datas.movies');
 exports.dataMusics = require('./questions.datas.musics');
 exports.dataMythology = require('./questions.datas.mythology');
+exports.dataPeople = require('./questions.datas.people');
+exports.dataPolitics = require('./questions.datas.politics');
+exports.dataScienceNat = require('./questions.datas.scienceNat');
 exports.dataVideosGames = require('./questions.datas.videosGames');

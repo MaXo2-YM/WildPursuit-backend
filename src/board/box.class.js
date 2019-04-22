@@ -8,15 +8,15 @@ class Node {
 }
 
 class IBox extends Node {
-  constructor(id, x, y) {
+  constructor(id, size, coord) {
     super(id);
 
-    this._x = x;
-    this._y = y;
+    this._size = size;
+    this._coord = coord;
   }
 
   get coord() {
-    return [this._x, this._y];
+    return this._coord;
   }
 
   play() {
@@ -27,8 +27,8 @@ class IBox extends Node {
 }
 
 class NormalBox extends IBox {
-  constructor(id, x, y, theme) {
-    super(id, x, y);
+  constructor(id, size, coord, theme) {
+    super(id, size, coord);
     this._theme = theme;
   }
 
@@ -42,8 +42,8 @@ class NormalBox extends IBox {
 }
 
 class CheeseBox extends IBox {
-  constructor(id, x, y, theme) {
-    super(id, x, y);
+  constructor(id, size, coord, theme) {
+    super(id, size, coord);
     this._theme = theme;
   }
 
@@ -55,15 +55,15 @@ class CheeseBox extends IBox {
 }
 
 class CenterBox extends IBox {
-  constructor(id, x, y) {
-    super(id, x, y);
+  constructor(id, size, coord) {
+    super(id, size, coord);
   }
   play() {}
 }
 
 class ReplayBox extends IBox {
-  constructor(id, x, y) {
-    super(id, x, y);
+  constructor(id, size, coord) {
+    super(id, size, coord);
   }
   play() {}
 }

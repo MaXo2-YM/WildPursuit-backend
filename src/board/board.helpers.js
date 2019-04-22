@@ -7,20 +7,20 @@ const {
 const { getAllThemes } = require('./../question/theme/theme.controller.js');
 const { pickANumberOfThings } = require('./../common/common.helpers.js');
 
-function createBox(id, posX, posY, type, theme) {
+function createBox(id, size, coord, type, theme) {
   let aBox;
   switch (type) {
     case 'center':
-      aBox = new CenterBox(id, posX, posY);
+      aBox = new CenterBox(id, size, coord);
       break;
     case 'cheese':
-      aBox = new CheeseBox(id, posX, posY, theme);
+      aBox = new CheeseBox(id, size, coord, theme);
       break;
     case 'replay':
-      aBox = new ReplayBox(id, posX, posY);
+      aBox = new ReplayBox(id, size, coord);
       break;
     default:
-      aBox = new NormalBox(id, posX, posY, theme);
+      aBox = new NormalBox(id, size, coord, theme);
       break;
   }
   return aBox;
@@ -86,7 +86,7 @@ function createBoxes(themes) {
         }
       }
 
-      theBoxes[i] = createBox(i, 0, 0, type, theme);
+      theBoxes[i] = createBox(i, 50, [120, 20], type, theme);
     }
   } else {
     console.log('Le plateau ne peux pas avoir moins de 4 catégories');
